@@ -131,11 +131,11 @@ function TakeQuiz() {
 
   useEffect(() => {
     // Fetch data from APIs
-    axios.get('http://localhost:4300/quiz').then((response) => {
+    axios.get('https://supperassit-api.vercel.app/quiz').then((response) => {
       setQuiz(response.data);
     });
 
-    axios.get('http://localhost:4300/quiz1').then((response) => {
+    axios.get('https://supperassit-api.vercel.app/quiz1').then((response) => {
       setQuiz1(response.data);
     });
   }, []);
