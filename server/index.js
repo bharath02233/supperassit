@@ -7,7 +7,30 @@ var cors=require('cors');
 
 var app=express();
 mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz')
-app.use(cors({origin:"https://supperassit-client.vercel.app",methods:["POST","GET"],credentials: true}))
+
+const allowedOrigins = [
+ "https://supperassit-client.vercel.app",
+ "https://supperassit-client.vercel.app/createQuiz",
+];
+
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Check if the request's origin matches any of the allowed origins
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      // Allow the request from the origin
+      callback(null, true);
+    } else {
+      // Reject the request if origin is not allowed
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],  // Allow specific HTTP methods
+  credentials: true,  // Allow credentials (cookies, etc.)
+}));
+
+
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
 
