@@ -26,12 +26,10 @@ app.post("/submit",(req,res)=>{
 })
 
 app.post("/submit1",(req,res)=>{
-     res.json(req.body);
     const temp=new quiz1Mod(req.body);
-    temp.save().then((res)=>{console.log(res)}).catch((error)=>{console.log(error)})
+    temp.save().then((data)=>{res.json(data)}).catch((error)=>{res.json(err)})
 
-      const response = { message: 'hi' };  // Create a response object
-      res.json(response);
+ 
    
     
 })
