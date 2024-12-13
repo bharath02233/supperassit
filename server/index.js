@@ -12,9 +12,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
 
 
-app.post("/submit",(req,res)=>{
-   
-    quizMod.insertMany(req.body)
+app.post("/submit",aync(req,res)=>{
+   await quizMod.deleteMany({});
+   await quizMod.insertMany(req.body)
   .then((data) => {
     console.log('Data inserted successfully');
    // Close the connection after operation
@@ -26,8 +26,9 @@ app.post("/submit",(req,res)=>{
 })
 
 app.post("/submit1",(req,res)=>{
+    await quiz1Mod.deleteMany({});
     const temp=new quiz1Mod(req.body);
-    temp.save().then((data)=>{res.json(data)}).catch((error)=>{res.json(err)})
+    await temp.save().then((data)=>{res.json(data)}).catch((error)=>{res.json(err)})
 
  
    
