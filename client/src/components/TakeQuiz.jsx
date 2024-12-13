@@ -128,7 +128,7 @@ function TakeQuiz() {
   const [quiz, setQuiz] = useState([]);
   const [quiz1, setQuiz1] = useState([]);
   let selectedItem = null; // **Fixed scope of selectedItem**
-
+   axios.defaults.withCredentails=true;
   useEffect(() => {
     // Fetch data from APIs
     axios.get('https://supperassit-api.vercel.app/quiz').then((response) => {
