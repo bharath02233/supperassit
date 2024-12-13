@@ -14,6 +14,7 @@ app.use(bodyparser.urlencoded({extended:'false'}));
 
 app.post("/submit",(req,res)=>{
     console.log(req.body)
+    res.json(req.body);
     quizMod.insertMany(req.body)
   .then(() => {
     console.log('Data inserted successfully');
@@ -26,6 +27,7 @@ app.post("/submit",(req,res)=>{
 })
 
 app.post("/submit1",(req,res)=>{
+     res.json(req.body);
     const temp=new quiz1Mod(req.body);
     temp.save().then((res)=>{console.log(res)}).catch((error)=>{console.log(error)})
 
