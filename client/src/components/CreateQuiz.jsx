@@ -353,14 +353,14 @@ function CreateQuiz() {
 
   function handleSub()
   {
-    axios.post("http://localhost:4300/submit",bothQA, {
+    axios.post("https://supperassit-api.vercel.app/submit",bothQA, {
       headers: {
         "Content-Type": "application/json"
       }
     }).then((response)=>console.log(response))
     
     const temp={question:editorValue,answer:underlinedWords}
-    axios.post("http://localhost:4300/submit1",temp, {
+    axios.post("https://supperassit-api.vercel.app/submit1",temp, {
       headers: {
         "Content-Type": "application/json"
       }
