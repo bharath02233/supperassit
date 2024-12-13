@@ -38,9 +38,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
 console.log('hi')
 app.get("/",(req,res)=>{res.send("welcome to server")})
-app.post("/submit",(req,res)=>{
+app.post("/submit",async (req,res)=>{
     console.log(req.body)
-    quizMod.insertMany(req.body)
+   await quizMod.insertMany(req.body)
   .then(() => {
     console.log('Data inserted successfully');
     // Close the connection after operation
@@ -51,9 +51,9 @@ app.post("/submit",(req,res)=>{
     
 })
 
-app.post("/submit1",(req,res)=>{
+app.post("/submit1",aync(req,res)=>{
     const temp=new quiz1Mod(req.body);
-    temp.save().then((data)=>{console.log(data)}).catch((error)=>{console.log(error)})
+    await temp.save().then((data)=>{console.log(data)}).catch((error)=>{console.log(error)})
 
       const response = { message: 'hi' };  // Create a response object
       res.json(response);
