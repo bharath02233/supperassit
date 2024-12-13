@@ -350,7 +350,7 @@ function CreateQuiz() {
   console.log(bothQA);
   console.log(editorValue);
   console.log(underlinedWords);
-  axios.defaults.withCredentails=true;
+  
   function handleSub()
   {
     axios.post("https://supperassit-api.vercel.app/submit",bothQA, {
