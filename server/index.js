@@ -33,7 +33,7 @@ app.use(cors({
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
-
+console.log('hi')
 app.get("/",(req,res)=>{res.send("welcome to server")})
 app.post("/submit",(req,res)=>{
     console.log(req.body)
