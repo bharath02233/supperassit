@@ -6,7 +6,10 @@ var bodyparser=require('body-parser');
 var cors=require('cors');
 
 var app=express();
-mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz')
+mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz',{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 
 const allowedOrigins = [
  "https://supperassit-client.vercel.app",
