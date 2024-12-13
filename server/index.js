@@ -6,44 +6,18 @@ var bodyparser=require('body-parser');
 var cors=require('cors');
 
 var app=express();
-mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz',{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-
-const allowedOrigins = [
- "https://supperassit-client.vercel.app",
- "https://supperassit-client.vercel.app/createQuiz",
-];
-
-
-app.use(cors({
-  origin: (origin, callback) => {
-    // Check if the request's origin matches any of the allowed origins
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      // Allow the request from the origin
-      callback(null, true);
-    } else {
-      // Reject the request if origin is not allowed
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],  // Allow specific HTTP methods
-  credentials: true,  // Allow credentials (cookies, etc.)
-}));
-
-
-
+mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz')
+app.use(cors())
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
-console.log('hi')
-app.get("/",(req,res)=>{res.send("welcome to server")})
-app.post("/submit",async (req,res)=>{
+
+
+app.post("/submit",(req,res)=>{
     console.log(req.body)
-   await quizMod.insertMany(req.body)
+    quizMod.insertMany(req.body)
   .then(() => {
     console.log('Data inserted successfully');
-    // Close the connection after operation
+    mongoose.connection.close(); // Close the connection after operation
   })
   .catch(err => console.error('Error inserting data', err));
     const response = { message: 'hi' };  // Create a response object
@@ -51,9 +25,9 @@ app.post("/submit",async (req,res)=>{
     
 })
 
-app.post("/submit1",aync(req,res)=>{
+app.post("/submit1",(req,res)=>{
     const temp=new quiz1Mod(req.body);
-    await temp.save().then((data)=>{console.log(data)}).catch((error)=>{console.log(error)})
+    temp.save().then((res)=>{console.log(res)}).catch((error)=>{console.log(error)})
 
       const response = { message: 'hi' };  // Create a response object
       res.json(response);
