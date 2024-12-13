@@ -11,7 +11,7 @@ app.use(cors())
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
 
-
+app.options('*', cors());
 app.post("/submit",aync(req,res)=>{
    // await quizMod.deleteMany({});
    await quizMod.insertMany(req.body)
