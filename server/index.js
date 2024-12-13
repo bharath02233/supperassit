@@ -17,7 +17,7 @@ app.post("/submit",(req,res)=>{
     quizMod.insertMany(req.body)
   .then(() => {
     console.log('Data inserted successfully');
-    mongoose.connection.close(); // Close the connection after operation
+   // Close the connection after operation
   })
   .catch(err => console.error('Error inserting data', err));
     const response = { message: 'hi1' };  // Create a response object
