@@ -20,7 +20,7 @@ app.post("/submit",(req,res)=>{
     mongoose.connection.close(); // Close the connection after operation
   })
   .catch(err => console.error('Error inserting data', err));
-    const response = { message: 'hi' };  // Create a response object
+    const response = { message: 'hi1' };  // Create a response object
     res.json(response);
     
 })
