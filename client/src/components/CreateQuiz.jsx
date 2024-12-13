@@ -355,14 +355,16 @@ function CreateQuiz() {
   {
     axios.post("https://supperassit-api.vercel.app/submit",bothQA, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":'*'
       }
     }).then((response)=>console.log(response))
     
     const temp={question:editorValue,answer:underlinedWords}
     axios.post("https://supperassit-api.vercel.app/submit1",temp, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+          "Access-Control-Allow-Origin":'*'
       }
     }).then((response)=>console.log(response))
 
