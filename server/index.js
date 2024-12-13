@@ -7,7 +7,7 @@ var cors=require('cors');
 
 var app=express();
 mongoose.connect('mongodb+srv://bharath02233:Bharath-123@cluster0.ipbyk.mongodb.net/quiz')
-app.use(cors())
+app.use(cors({origin:"https://supperassit-client.vercel.app"}))
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:'false'}));
 
