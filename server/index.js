@@ -13,16 +13,15 @@ app.use(bodyparser.urlencoded({extended:'false'}));
 
 
 app.post("/submit",(req,res)=>{
-    console.log(req.body)
-    res.json(req.body);
+   
     quizMod.insertMany(req.body)
-  .then(() => {
+  .then((data) => {
     console.log('Data inserted successfully');
    // Close the connection after operation
+     res.json(data);
   })
-  .catch(err => console.error('Error inserting data', err));
-    const response = { message: 'hi1' };  // Create a response object
-    res.json(response);
+  .catch(err => res.json(err));
+    
     
 })
 
